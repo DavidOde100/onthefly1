@@ -1,11 +1,12 @@
 import pg from 'pg'
 import './dotenv.js'
 
-const { Pool } = pg
+const config = {
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
+    host: process.env.PGHOST,
+    port: process.env.PGPORT,
+    database: process.env.PGDATABASE
+}
 
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-})
-
-export { pool }
-export default pool
+export const pool = new pg.Pool(config)
